@@ -108,8 +108,33 @@ a {
 
 
 /* ### TODO ### Styles for Header Component */
+header {
+  display: flex;
+  background-color: #EFEFEF;
+  padding-top: 3%;
+  padding-right: 5%;
+  padding-left: 5%;
+  padding-bottom: 2%;
+}
 
-/* ... your code here ... */
+.header__image {
+  flex-shrink: 1;
+  width: 10%;
+  height: 10%;
+
+}
+
+.header__title {
+  margin: auto;
+  text-align: center;
+  
+  flex-grow: 6;
+}
+
+.header__navigation {
+  text-align: right;
+  flex-grow: 1;
+}
 
 
 /* ### TODO ### Styles for Main Component */

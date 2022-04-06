@@ -14,7 +14,7 @@
 
 <body>
     <header class="header">
-        <img src="./images/location.png" class="header__image" alt="an image of a map and location">
+        <img src="./images/location.png" class="header__image" alt="an image of a map and location", width="100",height="100" />
         <h1 class="header__title">GeoTagApp</h1>
         <nav class="header__navigation">
             <a href="#">About</a> | <a href="#">Help</a> | <a href="/">Home</a>
@@ -24,28 +24,56 @@
     <main class="main">
         <section class="main__tagging tagging">
             <h2>Tagging</h2>
+            <fieldset>
+                <legend>Add a new GeoTag</legend>
+            
+                <!-- ############### VS1Lab 1a Form 1 Start -->
+                <form id="tag-form" action="/tagging" method="post">
+                    <p>
+                        <label for="Latitude">Latitude:</label>
+                        <br>
+                        <input id="Latitude" type="text",name="Latitude", value="49.01379", minlength=8, maxlength=8 disabled>
+                    </p>
 
-            <!-- ############### VS1Lab 1a Form 1 Start -->
-            <form id="tag-form" action="/tagging" method="post">
+                    <p>
+                        <label for="Longitude">Longitude:</label>
+                        <br>
+                        <input id="Longitude" type="text",name="Longitude", value="8.390071", minlength=8, maxlength=8 disabled>
+                    </p>
 
+                    <p>
+                        <label for="Name">Name:</label>
+                        <br>
+                        <input id="Name" type="text",name="Name", placeholder="e.g. Central Berlin", maxlength=10>
+                    </p>
+
+                    <p>
+                        <label for="Hashtag">Hashtag:</label>
+                        <br>
+                        <input id="Hashtag" type="text",name="Hashtag", placeholder="e.g. #ber", pattern="^#", maxlength=10>
+                    </p>
+                    <br>
                 <!-- ... your code here ... -->
 
-            </form>
-            <!-- ############### VS1Lab 1a Form 1 End -->
-
+                </form>
+                <!-- ############### VS1Lab 1a Form 1 End -->
+            </fieldset>
         </section>
 
         <section class="main__discovery discovery">
             <h2 class="discovery__title">Discovery</h2>
-
-            <!-- ############### VS1Lab 1a Form 2 Start -->
-            <form class="discovery__search" id="discoveryFilterForm" action="/discovery" method="post">
-
+            <fieldset>
+                <legend>Search</legend>
+                <!-- ############### VS1Lab 1a Form 2 Start -->
+                <form class="discovery__search" id="discoveryFilterForm" action="/discovery" method="post">
+                    <label for="Search">Search term or keywords:</label>
+                    <input id="Search" type="text",name="Search", placeholder="e.g. Berlin", maxlength=10>
+                    <input type="submit" value="Search">
                 <!-- ... your code here ... -->
 
-            </form>
-            <!-- ############### VS1Lab 1a Form 2 End -->
-
+                </form>
+                <!-- ############### VS1Lab 1a Form 2 End -->
+            </fieldset>
             <div class="discovery__wrapper">
                 <div class="discovery__taglist">
                     <ul class="discovery__results" id="discoveryResults">

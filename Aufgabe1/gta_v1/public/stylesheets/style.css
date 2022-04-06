@@ -105,15 +105,48 @@ a {
 .col-12 {
   width: calc(100% - 1rem);
 }
-
-
 /* ### TODO ### Styles for Header Component */
+/*
+header{
+  background-color: #EFEFEF;
+  padding-top: 3%;
+  padding-right: 5%;
+  padding-left: 5%;
+  padding-bottom: 2%;
+}
 
+.header__image{
+
+}
+.header__title{
+  text-align: center;
+}
+.header__navigation{
+  text-align: right;
+}
+*/
 /* ... your code here ... */
 
 
 /* ### TODO ### Styles for Main Component */
+/*
+main{
+  display:flex;
+  
+  padding-top: 3%;
+  padding-right: 5%;
+  padding-left: 5%;
+  padding-bottom: 2%;
+  justify-self: space-between;
+}
+.main .main__tagging{
+  
+}
+.main .main__discovery{
 
+}
+
+*/
 /* ... your code here ... */
 
 

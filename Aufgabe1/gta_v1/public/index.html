@@ -14,7 +14,7 @@
 
 <body>
     <header class="header">
-        <img src="./images/location.png" class="header__image" alt="an image of a map and location", width="100",height="100" />
+        <img src="./images/location.png" class="header__image" alt="an image of a map and location"/>
         <h1 class="header__title">GeoTagApp</h1>
         <nav class="header__navigation">
             <a href="#">About</a> | <a href="#">Help</a> | <a href="/">Home</a>
@@ -31,28 +31,23 @@
                 <form id="tag-form" action="/tagging" method="post">
                     <p>
                         <label for="Latitude">Latitude:</label>
-                        <br>
                         <input id="Latitude" type="text",name="Latitude", value="49.01379", minlength=8, maxlength=8 disabled>
                     </p>
 
                     <p>
                         <label for="Longitude">Longitude:</label>
-                        <br>
                         <input id="Longitude" type="text",name="Longitude", value="8.390071", minlength=8, maxlength=8 disabled>
                     </p>
 
                     <p>
                         <label for="Name">Name:</label>
-                        <br>
                         <input id="Name" type="text",name="Name", placeholder="e.g. Central Berlin", maxlength=10>
                     </p>
 
                     <p>
                         <label for="Hashtag">Hashtag:</label>
-                        <br>
                         <input id="Hashtag" type="text",name="Hashtag", placeholder="e.g. #ber", pattern="^#", maxlength=10>
                     </p>
-                    <br>
                 <!-- ... your code here ... -->
 
                 </form>

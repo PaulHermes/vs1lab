@@ -106,8 +106,9 @@ a {
   width: calc(100% - 1rem);
 }
 /* ### TODO ### Styles for Header Component */
-/*
+
 header{
+  display: flex;
   background-color: #EFEFEF;
   padding-top: 3%;
   padding-right: 5%;
@@ -116,20 +117,26 @@ header{
 }
 
 .header__image{
-
+  flex-shrink: 1;
+  width:10%;
+  height:10%;
 }
 .header__title{
   text-align: center;
+  margin:auto;
+  flex-grow: 6;
 }
 .header__navigation{
   text-align: right;
+  margin:auto;
+  flex-grow: 1;
 }
-*/
+
 /* ... your code here ... */
 
 
 /* ### TODO ### Styles for Main Component */
-/*
+
 main{
   display:flex;
   
@@ -137,16 +144,16 @@ main{
   padding-right: 5%;
   padding-left: 5%;
   padding-bottom: 2%;
-  justify-self: space-between;
+
 }
 .main .main__tagging{
-  
+  flex-grow: 1;
 }
 .main .main__discovery{
-
+  flex-grow: 2;
 }
 
-*/
+
 /* ... your code here ... */
 
 

@@ -46,7 +46,45 @@ a {
 
 /* ### TODO ### Styles for other HTML elements */
 
-/* ... your code here ... */
+input[type="submit"] {
+  background-color: orange;
+  color: white;
+  padding:7px;
+  margin:5px;
+
+  border:none;
+  border-radius: 2px;
+  box-shadow: gray 2px 2px 2px;
+}
+
+input[type="submit"]:hover {
+  background-color:rgb(255, 184, 53);
+}
+
+input[type="submit"]:active {
+  background-color:white;
+  color: gray;
+}
+
+input[type="text"] {
+  background-color: orange;
+  color: white;
+  padding:7px;
+  margin:5px;
+  border:none;
+  border-radius: 2px;
+  box-shadow: gray 2px 2px 2px;
+}
+
+input[type="text"]:hover {
+  background-color:rgb(255, 184, 53);
+}
+
+input[type="text"]:active {
+  background-color:white;
+  color: gray;
+}
+
 
 
 /* Grid styles (no changes required) */
@@ -108,30 +146,81 @@ a {
 
 
 /* ### TODO ### Styles for Header Component */
+header {
+  display: flex;
+  background-color: #EFEFEF;
+  padding-top: 3%;
+  padding-right: 5%;
+  padding-left: 5%;
+  padding-bottom: 2%;
+}
 
-/* ... your code here ... */
+.header__image {
+  flex-shrink: 1;
+  width: 10%;
+  height: 10%;
+
+}
+
+.header__title {
+  margin: auto;
+  text-align: center;
+  
+  flex-grow: 6;
+}
+
+.header__navigation {
+  text-align: right;
+  flex-grow: 1;
+}
 
 
 /* ### TODO ### Styles for Main Component */
 
 /* ... your code here ... */
+.main {
+  display: flex;
+  flex-direction: row;
+}
 
 
 /* ### TODO ### Styles for Tagging component */
 
-/* ... your code here ... */
+.tagging {
+
+}
 
 
 /* ### TODO ### Styles for Discovery component */
 
-/* ... your code here ... */
+.discovery {
+  display: flex;
+  flex-direction: column;
+}
+
+.discovery__wrapper {
+  display: flex;
+  flex-direction: row;
+}
 
 
 /* ### TODO ### Styles for Footer Component */
 
-/* ... your code here ... */
+.footer {
+  color: white;
+  background-color: orange;
+  padding: 10px;
+}
 
 
 /* ### TODO ### Media Queries */
 
-/* ... your code here ... */
+@media  (max-width: 768px) {
+  .main {
+    flex-direction:column;
+  }
+
+  .discovery__wrapper {
+    flex-direction:column;
+  }
+}

@@ -119,8 +119,8 @@ header {
 
 .header__image {
   flex-shrink: 1;
-  width: 10%;
-  height: 10%;
+  width: 5%;
+  height: 5%;
 
 }
 

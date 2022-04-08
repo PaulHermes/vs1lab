@@ -110,11 +110,12 @@ a {
 header {
   display: flex;
   justify-content: space-between;
-  background-color: #EFEFEF;
+  background-color: var(--background-color);
   padding-top: 3%;
   padding-right: 5%;
   padding-left: 2%;
   padding-bottom: 2%;
+  border-bottom: 1px solid var(--border-color)
 }
 
 .header__image {
@@ -234,6 +235,16 @@ legend{
 
 /* ### TODO ### Styles for Footer Component */
 
+footer{
+  border-top:1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--background-color);
+  padding-top: 3%;
+  padding-right: 5%;
+  padding-left: 2%;
+  padding-bottom: 2%;
+}
 /* ... your code here ... */
 
 

@@ -110,10 +110,11 @@ a {
 /* ### TODO ### Styles for Header Component */
 header {
   display: flex;
+  justify-content: space-between;
   background-color: #EFEFEF;
   padding-top: 3%;
   padding-right: 5%;
-  padding-left: 5%;
+  padding-left: 2%;
   padding-bottom: 2%;
 }
 
@@ -127,29 +128,63 @@ header {
 .header__title {
   margin: auto;
   text-align: center;
-  
-  flex-grow: 6;
+
+  flex: 6;
 }
 
 .header__navigation {
   text-align: right;
-  flex-grow: 1;
+  flex: 1;
 }
 
 
 /* ### TODO ### Styles for Main Component */
 
-/* ... your code here ... */
+main{
+ display: flex;
+ justify-content: space-between;
+  padding-top: 3%;
+  padding-right: 3%;
+  padding-left: 2%;
+  padding-bottom: 2%;
+}
 
+.main__tagging{
+  flex-grow:  1;
+}
+
+.main__discovery{
+  flex-grow: 1;
+}
 
 /* ### TODO ### Styles for Tagging component */
 
-/* ... your code here ... */
+fieldset{
+  padding: 1rem;
+  margin: 0.5rem;
+  
+}
 
+legend{
+  margin-left: 0.5rem;
+}
+
+.tagging__box input{
+  margin-bottom: 5%;
+}
+
+.tagging__box #submit{
+  margin-top: 1rem;
+}
 
 /* ### TODO ### Styles for Discovery component */
+.discovery{
 
-/* ... your code here ... */
+}
+
+.discovery__wrapper{
+  display: flex;
+}
 
 
 /* ### TODO ### Styles for Footer Component */

@@ -22,72 +22,76 @@
     </header>
 
     <main class="main">
-        <section class="main__tagging tagging">
-            <h2>Tagging</h2>
+        <div class="col-2">
+            <section class="main__tagging tagging">
+                <h2>Tagging</h2>
 
-            <!-- ############### VS1Lab 1a Form 1 Start -->
-            <form id="tag-form" action="/tagging" method="post">
-                <fieldset>
-                    <legend>Tagging</legend>
+                <!-- ############### VS1Lab 1a Form 1 Start -->
+                <form id="tag-form" action="/tagging" method="post">
+                    <fieldset>
+                        <legend>Add a new GeoTag</legend>
+                        <div class="tagging__box">
+                            <label for="latitude">Latitude:</label>
+                            <input type="number" id="latitude" name="latitude" disabled>
 
-                    <label for="lantitude">Latitude:</label>
-                    <input type="number" id="latitude" name="latitude" disabled>
+                            <label for="longitude">Longitude:</label>
+                            <input type="number" id="longitude" name="longitude" disabled>
 
-                    <label for="longitude">Longitude:</label>
-                    <input type="number" id="longitude" name="longitude" disabled>
+                            <label for="name">Name:</label>
+                            <input type="text" id="name" name="name" maxlength="10" placeholder="z.B. Home" required>
 
-                    <label for="name">Name:</label>
-                    <input type="text" id="name" name="name" maxlength="10" placeholder="z.B.: Home" required>
+                            <label for="hashtag">Hashtag:</label>
+                            <input type="text" id="hashtag" name="hashtag" pattern="#[A-z]" maxlength="11"
+                                placeholder="z.B. #living">
 
-                    <label for="hashtag">Hashtag</label>
-                    <input type="text" id="hashtag" name="hashtag" pattern="#[A-z]" maxlength="11" placeholder="z.B.: #living">
+                            <input type="submit" id ="submit">
+                        </div>
+                    </fieldset>
+                </form>
+                <!-- ############### VS1Lab 1a Form 1 End -->
 
-                    <input type="submit">
-                </fieldset>
-            </form>
-            <!-- ############### VS1Lab 1a Form 1 End -->
+            </section>
+        </div>
+        <div class="col-9">
+            <section class="main__discovery discovery">
+                <h2 class="discovery__title">Discovery</h2>
 
-        </section>
+                <!-- ############### VS1Lab 1a Form 2 Start -->
+                <form class="discovery__search" id="discoveryFilterForm" action="/discovery" method="post">
+                    <fieldset>
+                        <legend>Search</legend>
 
-        <section class="main__discovery discovery">
-            <h2 class="discovery__title">Discovery</h2>
+                        <label for="searchterm">Search term</label>
+                        <input type="text" id="searchterm" name="searchterm" placeholder="z.B. Karlsruhe">
 
-            <!-- ############### VS1Lab 1a Form 2 Start -->
-            <form class="discovery__search" id="discoveryFilterForm" action="/discovery" method="post">
-                <fieldset>
-                    <legend>Discovery</legend>
+                        <label for="lantitude" hidden>Latitude:</label>
+                        <input type="number" id="latitude" name="latitude" hidden>
 
-                    <label for="searchterm">Searchterm</label>
-                    <input type="text" id="searchterm" name="searchterm">
+                        <label for="longitude" hidden>Longitude:</label>
+                        <input type="number" id="longitude" name="longitude" hidden>
 
-                    <label for="lantitude" hidden>Latitude:</label>
-                    <input type="number" id="latitude" name="latitude" hidden>
-
-                    <label for="longitude" hidden>Longitude:</label>
-                    <input type="number" id="longitude" name="longitude" hidden>
-
-                    <input type="submit">
-                </fieldset>
+                        <input type="submit" id="submit">
+                    </fieldset>
 
 
-            </form>
-            <!-- ############### VS1Lab 1a Form 2 End -->
+                </form>
+                <!-- ############### VS1Lab 1a Form 2 End -->
 
-            <div class="discovery__wrapper">
-                <div class="discovery__taglist">
-                    <ul class="discovery__results" id="discoveryResults">
-                        <li>Castle (49.01379, 8.404435) #sight</li>
-                        <li>IWI (49.01379, 8.390071) #edu</li>
-                    </ul>
+                <div class="discovery__wrapper">
+                    <div class="discovery__taglist">
+                        <ul class="discovery__results" id="discoveryResults">
+                            <li>Castle (49.01379, 8.404435) #sight</li>
+                            <li>IWI (49.01379, 8.390071) #edu</li>
+                        </ul>
+                    </div>
+
+                    <div class="discovery__map">
+                        <img src="./images/mapview.jpg" alt="a map with locations" id="mapView" />
+                        <span>Result map</span>
+                    </div>
                 </div>
-
-                <div class="discovery__map">
-                    <img src="./images/mapview.jpg" alt="a map with locations" id="mapView" />
-                    <span>Result map</span>
-                </div>
-            </div>
-        </section>
-
+            </section>
+        </div>
     </main>
 
     <footer class="footer">

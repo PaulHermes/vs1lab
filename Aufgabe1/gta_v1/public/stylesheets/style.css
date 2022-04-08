@@ -111,17 +111,18 @@ a {
 header {
   display: flex;
   justify-content: space-between;
-  background-color: #EFEFEF;
+  background-color: var(--background-color);
   padding-top: 3%;
   padding-right: 5%;
   padding-left: 2%;
   padding-bottom: 2%;
+  border-bottom: 1px solid var(--border-color)
 }
 
 .header__image {
   flex-shrink: 1;
-  width: 5%;
-  height: 5%;
+  width: 3%;
+  height: 3%;
 
 }
 
@@ -141,8 +142,6 @@ header {
 /* ### TODO ### Styles for Main Component */
 
 main{
- /*display: flex;
- justify-content: space-evenly;*/
   padding-top: 3%;
   padding-right: 3%;
   padding-left: 2%;
@@ -184,9 +183,6 @@ legend{
 
 
 /* ### TODO ### Styles for Discovery component */
-.discovery{
-  
-}
 
 .discovery__wrapper{
   display: flex;
@@ -194,32 +190,29 @@ legend{
 }
 
 .discovery__box{
-  display: grid;
-  grid-template-columns: 25% 75%;
-  grid-template-rows: auto auto auto;
+ display: flex;
+ flex-direction: column;
+ align-items: flex-start;
 }
 
 .discovery__box label{
-  grid-column: 1;
-  grid-row: 1;
+  margin-bottom: 0.75%;
 }
 
-.discovery__box #searchterm{
-  grid-column: 1;
-  grid-row: 2;
-}
-
-.discovery__box #submit{
-  grid-column: 1;
-  grid-row: 3;  
+.discovery__box input{
+  flex-shrink: 15;
+  margin-bottom: 2%;
+  height: 2rem;
+  width: 14rem;
 }
 
 .discovery__results li {
   display: block;
-  background-color: #666;
+  background-color: var(--background-color);
+  padding: 5%;
   margin-left: 4%;
   margin-bottom: 10%;
-
+  border: 1px solid var(--border-color);
   width: 120%;
   list-style-type:none;
   color: var(--link-color);
@@ -234,7 +227,16 @@ legend{
 
 /* ### TODO ### Styles for Footer Component */
 
-/* ... your code here ... */
+footer{
+  border-top:1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--background-color);
+  padding-top: 2%;
+  padding-right: 5%;
+  padding-left: 2%;
+  padding-bottom: 2%;
+}
 
 
 /* ### TODO ### Media Queries */

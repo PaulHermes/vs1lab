@@ -103,7 +103,9 @@ input[type="text"]:focus {
   outline: none;
   box-shadow: var(--shadow-color) 2px 2px 2px;
 }
-
+span {
+  display:block;
+}
 
 
 /* Grid styles (no changes required) */

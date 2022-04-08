@@ -21,8 +21,8 @@
         </nav>
     </header>
 
-    <main class="main">
-        <div class="col-2">
+    <main class="main row">
+        <div class="col-3">
             <section class="main__tagging tagging">
                 <h2>Tagging</h2>
 
@@ -38,13 +38,13 @@
                             <input type="number" id="longitude" name="longitude" disabled>
 
                             <label for="name">Name:</label>
-                            <input type="text" id="name" name="name" maxlength="10" placeholder="z.B. Home" required>
+                            <input type="text" id="name" name="name" maxlength="10" placeholder="e.g. Home" required>
 
                             <label for="hashtag">Hashtag:</label>
                             <input type="text" id="hashtag" name="hashtag" pattern="#[A-z]" maxlength="11"
-                                placeholder="z.B. #living">
+                                placeholder="e.g. #living">
 
-                            <input type="submit" id ="submit">
+                            <input type="submit" id ="submit" value="Add Tag">
                         </div>
                     </fieldset>
                 </form>
@@ -60,7 +60,7 @@
                 <form class="discovery__search" id="discoveryFilterForm" action="/discovery" method="post">
                     <fieldset>
                         <legend>Search</legend>
-
+                        <div class="discovery__box">
                         <label for="searchterm">Search term</label>
                         <input type="text" id="searchterm" name="searchterm" placeholder="z.B. Karlsruhe">
 
@@ -71,6 +71,7 @@
                         <input type="number" id="longitude" name="longitude" hidden>
 
                         <input type="submit" id="submit">
+                    </div>
                     </fieldset>
 
 

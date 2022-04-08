@@ -27,12 +27,13 @@ html {
 :root {
   --primary-color: rgb(255, 174, 0);
   --primary-color-highlight: rgb(255, 196, 70);
-  --gray-color: rgb(143, 143, 143);
   --font-on-primary-color: white;
-  --shadow-color: rgb(179, 179, 179);
-  --header-footer-color: white;
+  --header-footer-color: rgb(255, 255, 255);
   --header-footer-font-color: gray;
+  --shadow-color: rgb(179, 179, 179);
   --background-color: #efefef;
+  --font-color: rgb(78, 78, 78);
+  --gray-color: rgb(143, 143, 143);
 }
 
 
@@ -40,10 +41,11 @@ html {
 
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  color: rgb(99, 99, 99);
+  color: var(--font-color);
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  background-color: var(--background-color);
 }
 
 a {
@@ -64,30 +66,37 @@ fieldset {
   border-style: solid;
 }
 
+form > * {
+  display: block;
+}
+
 input[type="submit"] {
   background-color: var(--primary-color);
   color: var(--font-on-primary-color);
   padding:7px;
-  margin:5px;
+  margin: 7px;
   font-weight: bold;
   border:none;
   border-radius: 2px;
   box-shadow: var(--shadow-color) 2px 2px 2px;
+
+  transition: scale 0.1s, background-color 0.2s;
 }
 
 input[type="submit"]:hover {
   background-color:var(--primary-color-highlight);
   cursor: pointer;
-  scale: 1.05;
+  
 }
 
 input[type="submit"]:active {
   background-color:white;
   color: gray;
+  scale: 1.05;
 }
 
 input[type="text"] {
-  padding: 5px;
+  padding: 7px;
   margin: 5px;
   border: 2px solid var(--gray-color);
   border-radius: 5px;
@@ -201,11 +210,9 @@ header {
 
 /* ... your code here ... */
 .main {
-  display: flex;
-  flex-direction: row;
-  flex-grow: 1;
-  justify-content: center;
   padding: 30px;
+  align-self: center;
+  max-width: 1200px;
 }
 
 .main section {
@@ -217,21 +224,15 @@ header {
 
 
 #tag-form > * {
-  width: 100%;
+  width: calc(100% - 1rem);
 }
 
 
 
 /* ### TODO ### Styles for Discovery component */
 
-.discovery {
-  display: flex;
-  flex-direction: column;
-}
-
-.discovery__wrapper {
-  display: flex;
-  flex-direction: row;
+#mapView {
+  width: 100%;
 }
 
 .discovery__wrapper > * {
@@ -242,7 +243,7 @@ header {
   padding: 0px;
 }
 
-.discovery__results li {
+.discovery__results > * { /* Probably do this in a class instead, will change as soon as we add the javascript for the entries*/
   display: block;
   color: var(--font-on-primary-color);
   background-color: var(--primary-color);
@@ -251,6 +252,18 @@ header {
   margin: 5px;
   cursor: pointer;
   border-radius: 2px;
+  box-shadow: var(--shadow-color) 2px 2px 2px;
+
+  transition: background-color 0.2s, scale 0.2s;
+}
+
+.discovery__results > *:hover {
+  background-color:white;
+  color: gray;
+}
+
+.discovery__results > *:active {
+  scale: 1.05;
 }
 
 /* ### TODO ### Styles for Footer Component */
@@ -266,12 +279,27 @@ header {
 
 /* ### TODO ### Media Queries */
 
-@media  (max-width: 780px) {
+@media  (max-width: 850px) {
   .main {
     flex-direction:column;
   }
 
+  .tagging {
+    width: calc(100% - 1rem);
+  }
+  .discovery {
+    width: calc(100% - 1rem);
+  }
+
+  .discovery__search > * {
+    width: calc(100% - 1rem);
+  }
+
   .discovery__wrapper {
     flex-direction:column;
+  }
+
+  .discovery__wrapper > * {
+    width: calc(100% - 1rem);
   }
 }

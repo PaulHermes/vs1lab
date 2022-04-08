@@ -14,20 +14,25 @@ html {
 
 * {
   margin: 0;
-  padding: 0;
+  /*padding: 0;*/
 
   /* This approach prevents issues with 3rd party content-box components */
   box-sizing: inherit;
+  /* transition: all 0.1s; */
 }
 
 
 /* Variables (example: see declaration for "a" below) */
 
 :root {
-  --link-color: #00B7FF;
+  --primary-color: rgb(255, 174, 0);
+  --primary-color-highlight: rgb(255, 196, 70);
+  --gray-color: rgb(143, 143, 143);
+  --font-on-primary-color: white;
+  --shadow-color: rgb(179, 179, 179);
+  --header-footer-color: white;
+  --header-footer-font-color: gray;
   --background-color: #efefef;
-  --border-color: #cdcdcd;
-  --gray-color: #666;
 }
 
 
@@ -35,18 +40,73 @@ html {
 
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  color: rgb(99, 99, 99);
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
 
 a {
-  color: var(--link-color);
+  color: var(--primary-color);
 }
 
 /* ### TODO ### Styles for other HTML elements */
 
-/* ... your code here ... */
+legend {
+  margin: 10px;
+  font-weight: bold;
+  
+}
+
+fieldset {
+  border-color: rgb(163, 163, 163);
+  border-radius: 2px;
+  border-style: solid;
+}
+
+input[type="submit"] {
+  background-color: var(--primary-color);
+  color: var(--font-on-primary-color);
+  padding:7px;
+  margin:5px;
+  font-weight: bold;
+  border:none;
+  border-radius: 2px;
+  box-shadow: var(--shadow-color) 2px 2px 2px;
+}
+
+input[type="submit"]:hover {
+  background-color:var(--primary-color-highlight);
+  cursor: pointer;
+  scale: 1.05;
+}
+
+input[type="submit"]:active {
+  background-color:white;
+  color: gray;
+}
+
+input[type="text"] {
+  display:block;
+  padding: 5px;
+  margin: 5px;
+  border: 2px solid var(--gray-color);
+  border-radius: 5px;
+}
+
+input[type="text"]:hover {
+  box-shadow: var(--shadow-color) 2px 2px 2px;
+}
+
+input[type="text"]:focus {
+  border-color: var(--primary-color);
+  outline: none;
+  box-shadow: var(--shadow-color) 2px 2px 2px;
+}
+
+span{
+  display:block;
+}
 
 
 /* Grid styles (no changes required) */
@@ -108,30 +168,120 @@ a {
 
 
 /* ### TODO ### Styles for Header Component */
+header {
+  display: flex;
+  padding-top: 3%;
+  padding-right: 5%;
+  padding-left: 5%;
+  padding-bottom: 2%;
+  color: var(--header-footer-font-color);
+  font-weight: bold;
+  background-color: var(--header-footer-color);
+  padding: 20px;
+  box-shadow: var(--shadow-color) 0px 2px 3px;
+}
 
-/* ... your code here ... */
+.header__image {
+  flex-shrink: 1;
+  width: 5%;
+  height: 5%;
+
+}
+
+.header__title {
+  margin: auto;
+  text-align: center;
+  
+  flex-grow: 6;
+}
+
+.header__navigation {
+  text-align: right;
+  flex-grow: 1;
+}
 
 
 /* ### TODO ### Styles for Main Component */
 
-/* ... your code here ... */
+.main {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+  justify-content: center;
+  padding: 30px;
+}
+
+.main section {
+  margin: 10px;
+}
 
 
 /* ### TODO ### Styles for Tagging component */
 
-/* ... your code here ... */
+
+#tag-form > * {
+  width: 100%;
+}
+
 
 
 /* ### TODO ### Styles for Discovery component */
 
-/* ... your code here ... */
+.discovery {
+  display: flex;
+  flex-direction: column;
+}
 
+.discovery__wrapper {
+  display: flex;
+  flex-direction: row;
+}
+
+.discovery__wrapper > * {
+  margin: 10px;
+}
+
+.discovery__results {
+  padding: 0px;
+}
+
+.discovery__results li {
+  display: block;
+  white-space: nowrap;
+  color: var(--font-on-primary-color);
+  background-color: var(--primary-color);
+  font-weight: bold;
+  padding: 10px;
+  margin: 5px;
+  cursor: pointer;
+  border-radius: 2px;
+}
 
 /* ### TODO ### Styles for Footer Component */
 
-/* ... your code here ... */
+.footer {
+  position:fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 50px;
+  color: var(--header-footer-font-color);
+  font-weight: bold;
+  background-color: var(--header-footer-color);;
+  padding: 20px;
+  box-shadow: var(--shadow-color) 0px -2px 3px;
+}
 
 
 /* ### TODO ### Media Queries */
 
-/* ... your code here ... */
+@media  (max-width: 780px) {
+  .main {
+    flex-direction:column;
+    
+  }
+
+  .discovery__wrapper {
+    flex-direction:column;
+  }
+}

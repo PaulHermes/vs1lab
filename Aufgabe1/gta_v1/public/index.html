@@ -30,28 +30,28 @@
                 <legend> Enter new GeoTag</legend>
                 <form id="tag-form" action="/tagging" method="post">
                     <!-- lattitude --> <!-- pattern="-?(\d){1,2}.(\d)+"-->
-                    <label for="lat"> latitude </label> <br>
+                    <label for="lat"> latitude </label> 
                     <input id="lat" type="text" name="lat" value="49.2446319" disabled required>
-                    <br>
+                    
 
                     <!-- longitude -->
-                    <label for="long"> longitude </label> <br>
+                    <label for="long"> longitude </label>
                     <input id="long" type="text" name="long" pattern="-?(\d){1,3}.(\d)+" value="8.7249894" disabled required>
-                    <br>
+                    
 
                     <!-- name -->
-                    <label for="name"> name </label> <br>
+                    <label for="name"> name </label>
                     <input id="name" type="text" name="name" placeholder="some name" maxlength="10" required>
-                    <br>
+                    
 
                     <!-- hashtag -->
-                    <label for="hashtag"> hashtag </label> <br>
+                    <label for="hashtag"> hashtag </label>
                     <input id="hashtag" type="text" name="hashtag" maxlength="11" pattern="#([A-Za-z])+"
                         placeholder="# + max. 10 letters">
-                    <br>
+                    
 
                     <!-- submit -->
-                    <input id="submit" type="submit" value="submit" name="submit"> <br>
+                    <input id="submit" type="submit" value="submit" name="submit">
 
                 </form>
             </fieldset>

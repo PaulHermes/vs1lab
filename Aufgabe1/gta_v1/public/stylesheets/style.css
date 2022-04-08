@@ -277,7 +277,6 @@ header {
 @media  (max-width: 780px) {
   .main {
     flex-direction:column;
-    
   }
 
   .discovery__wrapper {

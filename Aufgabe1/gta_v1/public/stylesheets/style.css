@@ -80,7 +80,7 @@ input[type="submit"] {
   border-radius: 2px;
   box-shadow: var(--shadow-color) 2px 2px 2px;
 
-  transition: scale 0.1s, background-color 0.2s;
+  transition: transform 0.1s, background-color 0.2s;
 }
 
 input[type="submit"]:hover {
@@ -92,7 +92,7 @@ input[type="submit"]:hover {
 input[type="submit"]:active {
   background-color:white;
   color: gray;
-  scale: 1.05;
+  transform: scale( 1.05);
 }
 
 input[type="text"] {
@@ -188,8 +188,8 @@ header {
 
 .header__image {
   flex-shrink: 1;
-  width: 10%;
-  height: 10%;
+  width: 5%;
+  height: 5%;
 
 }
 
@@ -255,7 +255,7 @@ header {
   user-select: none;
   box-shadow: var(--shadow-color) 2px 2px 2px;
 
-  transition: background-color 0.2s, scale 0.2s;
+  transition: background-color 0.2s, transform 0.2s;
 }
 
 .discovery__results > *:hover {
@@ -264,7 +264,7 @@ header {
 }
 
 .discovery__results > *:active {
-  scale: 1.05;
+  transform: scale( 1.05);
 }
 
 /* ### TODO ### Styles for Footer Component */

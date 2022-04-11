@@ -252,6 +252,7 @@ header {
   margin: 5px;
   cursor: pointer;
   border-radius: 2px;
+  user-select: none;
   box-shadow: var(--shadow-color) 2px 2px 2px;
 
   transition: background-color 0.2s, scale 0.2s;

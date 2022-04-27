@@ -105,7 +105,6 @@ class MapManager {
 // ... your code here ...
 
 function updateLocation(){
-    document.cookie = "SameSite=None"
     var locationHelper = new LocationHelper();
     LocationHelper.findLocation(function (value){
         locationHelper=value;
@@ -125,8 +124,6 @@ function updateLocation(){
 }
 // Wait for the page to fully load its DOM content, then call updateLocation
 document.addEventListener("DOMContentLoaded", () => {
-    alert("Please change the script 'geotagging.js'");
-    
-
+    //alert("Please change the script 'geotagging.js'");
     updateLocation();
 });

@@ -1,6 +1,5 @@
 /*
   File origin: VS1LAB A1b  
-
   CSS style is BEM. Classes used for CSS, IDs for JavaScript querying (future use).
   CSS variables used for clarity and themability (e.g. through SSR). 
   Inherited box sizing used for ease of including 3rd party content-box components.
@@ -219,13 +218,6 @@ header {
   margin: 10px;
 }
 
-.main__tagging{
-  flex-grow:  5;
-}
-
-.main__discovery{
-  flex-grow: 1;
-}
 
 /* ### TODO ### Styles for Tagging component */
 

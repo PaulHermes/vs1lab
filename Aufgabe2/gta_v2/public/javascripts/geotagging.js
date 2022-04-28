@@ -104,7 +104,7 @@ class MapManager {
  */
     function updateLocation(){
         try{
-            findLocation(function(){
+            LocationHelper.findLocation(function(helper){
                 document.getElementById("lat").value=helper.latitude;
                 document.getElementById("long").value=helper.longitude;
             });
@@ -114,12 +114,13 @@ class MapManager {
         }
 
         var mapManager=new MapManager("GaEQEQOvVMrNHkiTaQw5MiGABlYJZYjg");
-        document.getElementById("mapView").src= mapManager.getMapUrl(helper.latitude,helper.location);
+        document.getElementById("mapView").src= mapManager.getMapUrl( document.getElementById("lat").value,document.getElementById("long").value);
         
     }
 
 // Wait for the page to fully load its DOM content, then call updateLocation
 document.addEventListener("DOMContentLoaded", () => {
-    //alert("Please change the script 'geotagging.js'");
+   // alert("Please change the script 'geotagging.js'");
+    
     updateLocation();
 });

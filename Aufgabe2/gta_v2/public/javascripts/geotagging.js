@@ -107,14 +107,14 @@ function updateLocation()
     LocationHelper.findLocation(function (callbackValue)
     {
         //Tagging
-        document.getElementById("lat").value = callbackValue.latitude;
-        document.getElementById("long").value = callbackValue.longitude;
+        document.getElementById("lat").value = callbackValue.latitude();
+        document.getElementById("long").value = callbackValue.longitude();
         //Discovery
-        document.getElementById("hiddenlat").value = callbackValue.latitude;
-        document.getElementById("hiddenlong").value = callbackValue.longitude;
+        document.getElementById("hiddenlat").value = callbackValue.latitude();
+        document.getElementById("hiddenlong").value = callbackValue.longitude();
 
         var mapManager=new MapManager("f6Izk0LryJDBocqUVZc5AGZ8XGG1yy2c");
-        var map=mapManager.getMapUrl(callbackValue.latitude,callbackValue.longitude);
+        var map=mapManager.getMapUrl(callbackValue.latitude(), callbackValue.longitude());
         document.getElementById("mapView").src=map;
     });
 }

@@ -107,6 +107,8 @@ class MapManager {
             LocationHelper.findLocation(function(helper){
                 document.getElementById("lat").value=helper.latitude;
                 document.getElementById("long").value=helper.longitude;
+                document.getElementById("discLat").value=helper.latitude;
+                document.getElementById("discLong").value=helper.longitude;
             });
         }
         catch(e){
@@ -121,6 +123,5 @@ class MapManager {
 // Wait for the page to fully load its DOM content, then call updateLocation
 document.addEventListener("DOMContentLoaded", () => {
    // alert("Please change the script 'geotagging.js'");
-    
     updateLocation();
 });

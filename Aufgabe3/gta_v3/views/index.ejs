@@ -1,5 +1,107 @@
-<!-- TODO: HTML AUS AUFGABE2 HIERHER KOPIEREN UND DIE BEISPIEL-EINTRÄGE DER DISCOVERY-LISTE MIT DEN FOLGENDEN ZEILEN ERSETZEN -->
+<!DOCTYPE html>
 
-<% if (taglist !== undefined) taglist.forEach(function(gtag) { %>
-    <li><%= gtag.name %> ( <%= gtag.latitude %>,<%= gtag.longitude %>) <%= gtag.hashtag %> </li>
-<% }); %>
+<!-- File origin: VS1LAB A1a -->
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GeoTagApp</title>
+    <link rel="stylesheet" href="./stylesheets/style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <header class="header">
+        <img src="./images/location.png" class="header__image" alt="an image of a map and location">
+        <h1 class="header__title">GeoTagApp</h1>
+        <nav class="header__navigation">
+            <a href="#">About</a> | <a href="#">Help</a> | <a href="/">Home</a>
+        </nav>
+    </header>
+
+    <main class="main row">
+        <section class="main__tagging tagging col-3">
+            <h2>Tagging</h2>
+
+            <!-- ############### VS1Lab 1a Form 1 Start -->
+            <fieldset>
+                <legend> Enter new GeoTag</legend>
+                <form id="tag-form" action="/tagging" method="post">
+                    <!-- Removed disabled for lat, long as the coords are not send otherwise.. Is this supposed to work some other way?-->
+
+                    <!-- lattitude --> <!-- pattern="-?(\d){1,2}.(\d)+"-->
+                    <label for="lat"> Latitude: </label>
+                    <input id="lat" type="text" name="lat" value="<%= latitude %>" pattern="-?(\d){1,2}.(\d)+" required> 
+
+                    <!-- longitude --> <!-- pattern="-?(\d){1,3}.(\d)+"-->
+                    <label for="long"> Longitude: </label>
+                    <input id="long" type="text" name="long" value="<%= longitude %>" pattern="-?(\d){1,3}.(\d)+" required>
+
+                    <!-- name -->
+                    <label for="name"> Name: </label>
+                    <input id="name" type="text" name="name" placeholder="some name" maxlength="10" required>
+
+                    <!-- hashtag -->
+                    <label for="hashtag"> Hashtag: </label>
+                    <input id="hashtag" type="text" name="hashtag" maxlength="11" pattern="#([A-z])+"
+                        placeholder="# + max. 10 letters">
+
+                    <!-- submit -->
+                    <input id="submit" type="submit" value="Submit" name="submit">
+
+                </form>
+            </fieldset>
+            <!-- ############### VS1Lab 1a Form 1 End -->
+
+        </section>
+
+        <section class="main__discovery discovery col-9">
+            <h2 class="discovery__title">Discovery</h2>
+
+            <!-- ############### VS1Lab 1a Form 2 Start -->
+            <fieldset>
+                <legend> Filter by Searchterm</legend>
+                <form class="discovery__search" id="discoveryFilterForm" action="/discovery" method="post">
+                    <!-- search -->
+                    <input id="search" class="col-4" name="search" type="text" placeholder="search term">
+                    <input id="hiddenlat" type="hidden" name="hiddenlat" value="<%= latitude %>">
+                    <input id="hiddenlong" type="hidden" name="hiddenlong" value="<%= longitude %>">
+                    <input id="applysearch" class="col-4" name="applysearch" type="submit" value="Search">
+                </form>
+            </fieldset>
+            <!-- ############### VS1Lab 1a Form 2 End -->
+
+            <div class="discovery__wrapper row">
+                <div class="discovery__taglist col-5">
+                    <ul class="discovery__results" id="discoveryResults">
+
+                        <% if (taglist !== undefined) taglist.forEach(function(gtag) { %>
+                            <li><%= gtag.name %> ( <%= gtag.latitude %>,<%= gtag.longitude %>) <%= gtag.hashtag %> </li>
+                        <% }); %>
+
+                    </ul>
+                </div>
+
+                <div class="discovery__map col-7">
+                    <img src="./images/mapview.jpg" alt="a map with locations" id="mapView" data-tags="<%= JSON.stringify(taglist) %>" />
+                    <span>Result map</span>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <span>(c) 2021/22 HKA_IWI_VSYS</span>
+    </footer>
+
+    <!-- Load JavaScripts
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="./javascripts/location-helper.js"></script>
+    <script src="./javascripts/map-manager.js"></script>
+    <script src="./javascripts/geotagging.js"></script>
+</body>
+</html>

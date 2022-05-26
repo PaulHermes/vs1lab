@@ -33,7 +33,6 @@ class InMemoryGeoTagStore {
         GeoTagExamples.tagList.forEach(element => {
             this.addGeoTag(element[0], element[1], element[2], element[3]);
         })
-        this.#geotags.forEach(element => { console.log(element); })
     }
 
     addGeoTag(name, latitude, longitude, hashtag) {
@@ -49,25 +48,28 @@ class InMemoryGeoTagStore {
     }
 
     getNearbyGeoTags(latitude, longitude, radius) {
-        return this.#geotags.filter((element) => { return this.#entfernungBerechnen(latitude, element.latitude, longitude, element.longitude) <= radius; })
+        return this.#geotags.filter((element) => { 
+            console.log(element.name +"MOIN");
+            return this.#entfernungBerechnen(latitude, element.latitude, longitude, element.longitude) <= radius; })
     }
 
     searchNearbyGeoTags(keyword, latitude, longitude, radius) {
-        this.getNearbyGeoTags(latitude, longitude, radius).filter((element) => {
-            if (element.name == keyword || element.hashtag == keyword) {
-                return element;
-            }
+        return this.getNearbyGeoTags(latitude, longitude, radius).filter((element) => {
+            console.log(element.name +"MOIN");
+            return (element.name.toLowerCase().includes(keyword.toLowerCase()) || element.hashtag.toLowerCase().includes(keyword.toLowerCase()));
         })
     }
     #entfernungBerechnen(lat1, lat2, long1, long2) {
+        console.log(lat1 + " " + lat2 + " " + long1 + "sdfdfdf")
         var difLat = lat2 - lat1;
         var difLong = long2 - long1;
         difLat = Math.pow(difLat, 2);
         difLong = Math.pow(difLong, 2);
-        var sum = difLong + difLat;
-
-        sum = Math.sqrt(sum);
         
+        var sum = difLong + difLat;
+        console.log(sum+"adsf");
+        sum = Math.sqrt(sum);
+        console.log(sum +"§");
         return sum;
     }
 }

@@ -44,7 +44,7 @@ const radius = 10;
 
 // TODO: extend the following route example if necessary
 router.get('/', (req, res) => {
-  res.render('index', { taglist: geoTagStore.geoTags, longitude: "", latitude: "" })
+  res.render('index', { taglist: [], longitude: "", latitude: "" })
 });
 
 /**
@@ -71,9 +71,8 @@ router.post('/tagging', function (req, res) {
   var taggingLatitude = req.body["lat"];
 
   geoTagStore.addGeoTag(taggingName, taggingLatitude, taggingLongitude, tagginghashtag);
-  var geoTags = [];
 
-  geoTags = geoTagStore.getNearbyGeoTags(taggingLatitude, taggingLongitude, radius);
+  var geoTags = geoTagStore.getNearbyGeoTags(taggingLatitude, taggingLongitude, radius);
 
   res.render('index', { taglist: geoTags, longitude: taggingLongitude, latitude: taggingLatitude })
 })
@@ -96,11 +95,12 @@ router.post('/tagging', function (req, res) {
 // TODO: ... your code here ...
 router.post('/discovery', function (req, res) {
   var searchTerm = req.body["search"];
-  var long = req.body["longdis"];
-  var lat = req.body["latdis"];
+  var long = req.body["long"];
+  var lat = req.body["lat"];
+
   var geoTags = [];
   if (searchTerm == undefined) {
-    geoTags = geoTagStore.getNearbyGeoTags(latitude, longitude, radius);
+    geoTags = geoTagStore.getNearbyGeoTags(lat, long, radius);
   } else {
     geoTags = geoTagStore.searchNearbyGeoTags(searchTerm, lat, long, radius);
   }

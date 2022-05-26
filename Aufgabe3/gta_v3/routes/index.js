@@ -44,7 +44,7 @@ const radius = 10;
 
 // TODO: extend the following route example if necessary
 router.get('/', (req, res) => {
-  res.render('index', { taglist: geoTagStore.geoTags })
+  res.render('index', { taglist: geoTagStore.geoTags, longitude: "", latitude: "" })
 });
 
 /**
@@ -75,7 +75,7 @@ router.post('/tagging', function (req, res) {
 
   geoTags = geoTagStore.getNearbyGeoTags(taggingLatitude, taggingLongitude, radius);
 
-  res.render('index', { taglist: geoTags})
+  res.render('index', { taglist: geoTags, longitude: taggingLongitude, latitude: taggingLatitude })
 })
 /**
  * Route '/discovery' for HTTP 'POST' requests.
@@ -104,6 +104,6 @@ router.post('/discovery', function (req, res) {
   } else {
     geoTags = geoTagStore.searchNearbyGeoTags(searchTerm, lat, long, radius);
   }
-  res.render('index', { taglist: geoTags})
+  res.render('index', { taglist: geoTags, longitude: long, latitude: lat })
 })
 module.exports = router;

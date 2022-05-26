@@ -43,19 +43,19 @@ class InMemoryGeoTagStore {
         geotags.forEach(element => {
             if (element.name == geotagname) {
                 this.#geotags.splice(element);
-                return
+                return;
             }
         });
     }
 
     getNearbyGeoTags(latitude, longitude, radius) {
-        return this.#geotags.filter((element) => { return this.#entfernungBerechnen(latitude, element.latitude, longitude, element.longitude) <= radius })
+        return this.#geotags.filter((element) => { return this.#entfernungBerechnen(latitude, element.latitude, longitude, element.longitude) <= radius; })
     }
 
     searchNearbyGeoTags(keyword, latitude, longitude, radius) {
         this.getNearbyGeoTags(latitude, longitude, radius).filter((element) => {
             if (element.name == keyword || element.hashtag == keyword) {
-                return element
+                return element;
             }
         })
     }

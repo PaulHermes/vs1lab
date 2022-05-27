@@ -30,7 +30,8 @@ const GeoTag = require('../models/geotag');
  */
 // eslint-disable-next-line no-unused-vars
 const GeoTagStore = require('../models/geotag-store');
-
+const geoTagStore = new GeoTagStore()
+const defaultRadius = 10;
 /**
  * Route '/' for HTTP 'GET' requests.
  * (http://expressjs.com/de/4x/api.html#app.get.method)
@@ -42,7 +43,7 @@ const GeoTagStore = require('../models/geotag-store');
 
 // TODO: extend the following route example if necessary
 router.get('/', (req, res) => {
-  res.render('index', { taglist: [] })
+  res.render('index', { taglist: geoTagStore.geoTags, longitude: "", latitude: "" })
 });
 
 /**
@@ -61,6 +62,19 @@ router.get('/', (req, res) => {
  */
 
 // TODO: ... your code here ...
+router.post('/tagging', (req, res) => {
+  const name = req.body["name"];
+  const lat = req.body["latitude"];
+  const long = req.body["longitude"];
+
+  const radius = req.body["radius"] != undefined ? req.body["radius"] : defaultRadius;
+  geoTagStore.addGeoTag(name, lat, long, req.body["hashtag"]);
+
+  
+
+  const tags = geoTagStore.getNearbyGeoTags(lat, long, radius);
+  res.render('index', { taglist: tags, longitude: long, latitude: lat })
+});
 
 /**
  * Route '/discovery' for HTTP 'POST' requests.
@@ -79,5 +93,15 @@ router.get('/', (req, res) => {
  */
 
 // TODO: ... your code here ...
-
+router.post('/discovery', (req, res) => {
+  const search = req.body["search"];
+  const long = req.body["hiddenlong"] != undefined ? req.body["hiddenlong"] : 0;
+  const lat = req.body["hiddenlat"] != undefined ? req.body["hiddenlat"] : 0;
+  const radius = req.body["radius"] != undefined ? req.body["radius"] : defaultRadius;
+  console.log(search);
+  const tags = search == undefined ? 
+    geoTagStore.getNearbyGeoTags(lat, long, radius) : 
+    geoTagStore.searchNearbyGeoTags(search, lat, long, radius);
+  res.render('index', { taglist: tags, longitude: long, latitude: lat })
+});
 module.exports = router;

@@ -3,8 +3,8 @@
 /**
  * A class to help using the MapQuest map service.
  */
-// eslint-disable-next-line no-unused-vars
-class MapManager {
+ // eslint-disable-next-line no-unused-vars
+ class MapManager {
     #apiKey
 
     /**
@@ -20,19 +20,19 @@ class MapManager {
      * @param {number} latitude The map center latitude
      * @param {number} longitude The map center longitude
      * @param {{latitude, longitude, name}[]} tags The map tags, defaults to just the current location
-     * @param {number} zoom The map zoom, defaults to 11
+     * @param {number} zoom The map zoom, defaults to 12
      * @returns {string} URL of generated map
      */
-    getMapUrl(latitude, longitude, tags = [], zoom = 11) {
+    getMapUrl(latitude, longitude, tags = [], zoom = 12) {
         if (!this.#apiKey) {
             console.log("No API key provided.");
             return "images/mapview.jpg";
         }
 
-        let tagList = `${latitude},${longitude}|marker-start`;
-        tagList += tags.reduce((acc, tag) => `${acc}||${tag.latitude},${tag.longitude}|flag-${tag.name}`, "");
+        let tagList = `You,${latitude},${longitude}`;
+        tagList += tags.reduce((acc, tag) => `${acc}|${tag.name},${tag.latitude},${tag.longitude}`, "") //Original MapManager expected lat and long in location attribute which is not how we do things on the server
 
-        const mapQuestUrl = `https://www.mapquestapi.com/staticmap/v5/map?key=${this.#apiKey}&size=600,400&zoom=${zoom}&center=${latitude},${longitude}&locations=${tagList}`;
+        const mapQuestUrl = `https://www.mapquestapi.com/staticmap/v4/getmap?key=${this.#apiKey}&size=600,400&zoom=${zoom}&center=${latitude},${longitude}&pois=${tagList}`;
         console.log("Generated MapQuest URL:", mapQuestUrl);
 
         return mapQuestUrl;

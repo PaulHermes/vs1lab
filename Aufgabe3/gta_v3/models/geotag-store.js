@@ -5,6 +5,10 @@
  * Complete all TODOs in the code documentation.
  */
 
+ const GeoTag = require("./geotag");
+
+ const GeoTagExamples = require("./geotag-examples");
+
 /**
  * A class for in-memory-storage of geotags
  * 
@@ -23,9 +27,57 @@
  * - The proximity constrained is the same as for 'getNearbyGeoTags'.
  * - Keyword matching should include partial matches from name or hashtag fields. 
  */
-class InMemoryGeoTagStore{
+class InMemoryGeoTagStore
+{
 
     // TODO: ... your code here ...
+    geotags = Array();
+
+    constructor()
+    {
+        GeoTagExamples.tagList.forEach(element => {
+            this.addGeoTag(element[0],element[1],element[2],element[3])
+        })
+    }
+    addGeoTag(name, latitude, longitude, hashtag)
+    {
+        this.geotags.push(new GeoTag(name, latitude, longitude, hashtag));
+    }
+
+    removeGeoTag(name)
+    {
+        for (let i = 0; i < this.geotags.length; i++) 
+        {
+            if(this.geotags[i].name == name)
+            {
+                this.geotags.splice(i);
+            }
+        }
+    }
+
+    getNearbyGeoTags(latitude, longitude, radius)
+    {
+        this.geotags.filter((element) => {
+            return this.getDistance(latitude, longitude, element.latitude, element.longitude) <= radius;
+        });
+    }
+
+    searchNearbyGeoTags(searchterm, latitude, longitude, radius) 
+    {
+        searchterm = searchterm.toLowerCase();
+        return this.getNearbyGeoTags(latitude, longitude, radius).filter((tag) => {
+            return (tag.name.toLowerCase().includes(searchterm)
+             || tag.hashtag.toLowerCase().includes(searchterm));
+        });
+    }
+
+    getDistance(latitude1, longitude1, latitude2, longitude2)
+    {
+        var latDiff = latitude2 - latitude1;
+        var longDiff = longitude2 - longitude1;
+
+        return Math.sqrt((latDiff * latDiff) + (longDiff * longDiff));
+    }
 
 }
 

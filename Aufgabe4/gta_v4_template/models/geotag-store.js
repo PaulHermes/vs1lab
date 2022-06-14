@@ -40,7 +40,9 @@ class InMemoryGeoTagStore{
     }
 
     addGeoTag(name, latitude, longitude, hashtag) {
-        this.#geotags.push(new GeoTag(name, latitude, longitude, hashtag));
+        var tag = new GeoTag(name, latitude, longitude, hashtag);
+        this.#geotags.push(tag);
+        return tag;
     }
 
     removeGeoTag(tagname) {
@@ -65,6 +67,21 @@ class InMemoryGeoTagStore{
             return (tag.name.toLowerCase().includes(searchterm)
              || tag.hashtag.toLowerCase().includes(searchterm));
         });
+    }
+
+    searchGeoTags(searchterm) {
+        searchterm = searchterm.toLowerCase();
+        return this.#geotags.filter((tag) => {
+            return (tag.name.toLowerCase().includes(searchterm)
+             || tag.hashtag.toLowerCase().includes(searchterm));
+        });
+    }
+
+    getGeoTagById(id) {
+        this.#geotags.forEach(tag => {
+            if (tag.id == id) return tag;
+        });
+        return undefined;
     }
 
     get geoTags() {

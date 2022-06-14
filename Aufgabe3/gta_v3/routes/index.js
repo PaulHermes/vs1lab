@@ -31,6 +31,10 @@ const GeoTag = require('../models/geotag');
 // eslint-disable-next-line no-unused-vars
 const GeoTagStore = require('../models/geotag-store');
 
+//Setup Geo Tags app. Should probably be done elsewhere?
+const defaultSearchRadius = 10_000;
+const tagStore = new GeoTagStore();
+
 /**
  * Route '/' for HTTP 'GET' requests.
  * (http://expressjs.com/de/4x/api.html#app.get.method)
@@ -42,7 +46,7 @@ const GeoTagStore = require('../models/geotag-store');
 
 // TODO: extend the following route example if necessary
 router.get('/', (req, res) => {
-  res.render('index', { taglist: [] })
+  res.render('index', { taglist: tagStore.geoTags, longitude: "", latitude: "" })
 });
 
 /**
@@ -59,8 +63,18 @@ router.get('/', (req, res) => {
  * To this end, "GeoTagStore" provides a method to search geotags 
  * by radius around a given location.
  */
+ router.post('/tagging', (req, res) => {
+  const name = req.body["name"];
+  const hashtag = req.body["hashtag"];
+  const long = req.body["long"];
+  const lat = req.body["lat"];
+  const radius = req.body["radius"] != undefined ? req.body["radius"] : defaultSearchRadius;
 
-// TODO: ... your code here ...
+  tagStore.addGeoTag(name, lat, long, hashtag);
+
+  const tags = tagStore.getNearbyGeoTags(lat, long, radius);
+  res.render('index', { taglist: tags, longitude: long, latitude: lat })
+ });
 
 /**
  * Route '/discovery' for HTTP 'POST' requests.
@@ -78,6 +92,17 @@ router.get('/', (req, res) => {
  * by radius and keyword.
  */
 
-// TODO: ... your code here ...
+router.post('/discovery', (req, res) => {
+  const search = req.body["search"];
+  const long = req.body["hiddenlong"] != undefined ? req.body["hiddenlong"] : 0;
+  const lat = req.body["hiddenlat"] != undefined ? req.body["hiddenlat"] : 0;
+  const radius = req.body["radius"] != undefined ? req.body["radius"] : defaultSearchRadius;
+  console.log(search);
+  const tags = search == undefined ? 
+    tagStore.getNearbyGeoTags(lat, long, radius) : 
+    tagStore.searchNearbyGeoTags(search, lat, long, radius);
+  res.render('index', { taglist: tags, longitude: long, latitude: lat })
+});
+
 
 module.exports = router;

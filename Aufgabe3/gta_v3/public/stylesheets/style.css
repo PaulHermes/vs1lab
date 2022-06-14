@@ -1,0 +1,305 @@
+/*
+  File origin: VS1LAB A1b  
+  CSS style is BEM. Classes used for CSS, IDs for JavaScript querying (future use).
+  CSS variables used for clarity and themability (e.g. through SSR). 
+  Inherited box sizing used for ease of including 3rd party content-box components.
+*/
+
+/* Global styling */
+
+html {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  /*padding: 0;*/
+
+  /* This approach prevents issues with 3rd party content-box components */
+  box-sizing: inherit;
+  /* transition: all 0.1s; */
+}
+
+
+/* Variables (example: see declaration for "a" below) */
+
+:root {
+  --primary-color: rgb(255, 174, 0);
+  --primary-color-highlight: rgb(255, 196, 70);
+  --font-on-primary-color: white;
+  --header-footer-color: rgb(255, 255, 255);
+  --header-footer-font-color: gray;
+  --shadow-color: rgb(179, 179, 179);
+  --background-color: #efefef;
+  --font-color: rgb(78, 78, 78);
+  --gray-color: rgb(143, 143, 143);
+}
+
+
+/* HTML element styles */
+
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  color: var(--font-color);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--background-color);
+}
+
+a {
+  color: var(--primary-color);
+}
+
+/* ### TODO ### Styles for other HTML elements */
+
+legend {
+  margin: 10px;
+  font-weight: bold;
+  
+}
+
+fieldset {
+  border-color: rgb(163, 163, 163);
+  border-radius: 2px;
+  border-style: solid;
+}
+
+form > * {
+  display: block;
+}
+
+input[type="submit"] {
+  background-color: var(--primary-color);
+  color: var(--font-on-primary-color);
+  padding:7px;
+  margin: 7px;
+  font-weight: bold;
+  border:none;
+  border-radius: 2px;
+  box-shadow: var(--shadow-color) 2px 2px 2px;
+
+  transition: transform 0.1s, background-color 0.2s;
+}
+
+input[type="submit"]:hover {
+  background-color:var(--primary-color-highlight);
+  cursor: pointer;
+  
+}
+
+input[type="submit"]:active {
+  background-color:white;
+  color: gray;
+  transform: scale( 1.05);
+}
+
+input[type="text"] {
+  padding: 7px;
+  margin: 5px;
+  border: 2px solid var(--gray-color);
+  border-radius: 5px;
+}
+
+input[type="text"]:hover {
+  box-shadow: var(--shadow-color) 2px 2px 2px;
+}
+
+input[type="text"]:focus {
+  border-color: var(--primary-color);
+  outline: none;
+  box-shadow: var(--shadow-color) 2px 2px 2px;
+}
+
+
+
+/* Grid styles (no changes required) */
+
+.row {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex: 1;
+}
+
+.col-1 {
+  width: calc(8.33% - 1rem);
+}
+
+.col-2 {
+  width: calc(16.66% - 1rem);
+}
+
+.col-3 {
+  width: calc(25% - 1rem);
+}
+
+.col-4 {
+  width: calc(33.33% - 1rem);
+}
+
+.col-5 {
+  width: calc(41.66% - 1rem);
+}
+
+.col-6 {
+  width: calc(50% - 1rem);
+}
+
+.col-7 {
+  width: calc(58.33% - 1rem);
+}
+
+.col-8 {
+  width: calc(66.66% - 1rem);
+}
+
+.col-9 {
+  width: calc(75% - 1rem);
+}
+
+.col-10 {
+  width: calc(83.33% - 1rem);
+}
+
+.col-11 {
+  width: calc(91.66% - 1rem);
+}
+
+.col-12 {
+  width: calc(100% - 1rem);
+}
+
+
+/* ### TODO ### Styles for Header Component */
+header {
+  display: flex;
+  padding-top: 3%;
+  padding-right: 5%;
+  padding-left: 5%;
+  padding-bottom: 2%;
+  color: var(--header-footer-font-color);
+  font-weight: bold;
+  background-color: var(--header-footer-color);
+  padding: 20px;
+  box-shadow: var(--shadow-color) 0px 2px 3px;
+}
+
+.header__image {
+  flex-shrink: 1;
+  width: 5%;
+  height: 5%;
+
+}
+
+.header__title {
+  margin: auto;
+  text-align: center;
+  
+  flex-grow: 6;
+}
+
+.header__navigation {
+  text-align: right;
+  flex-grow: 1;
+}
+
+
+/* ### TODO ### Styles for Main Component */
+
+/* ... your code here ... */
+.main {
+  padding: 30px;
+  align-self: center;
+  max-width: 1200px;
+}
+
+.main section {
+  margin: 10px;
+}
+
+
+/* ### TODO ### Styles for Tagging component */
+
+
+#tag-form > * {
+  width: calc(100% - 1rem);
+}
+
+
+
+/* ### TODO ### Styles for Discovery component */
+
+#mapView {
+  width: 100%;
+}
+
+.discovery__wrapper > * {
+  margin: 10px;
+}
+
+.discovery__results {
+  padding: 0px;
+}
+
+.discovery__results > * { /* Probably do this in a class instead, will change as soon as we add the javascript for the entries*/
+  display: block;
+  color: var(--font-on-primary-color);
+  background-color: var(--primary-color);
+  font-weight: bold;
+  padding: 10px;
+  margin: 5px;
+  cursor: pointer;
+  border-radius: 2px;
+  user-select: none;
+  box-shadow: var(--shadow-color) 2px 2px 2px;
+
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.discovery__results > *:hover {
+  background-color:white;
+  color: gray;
+}
+
+.discovery__results > *:active {
+  transform: scale( 1.05);
+}
+
+/* ### TODO ### Styles for Footer Component */
+
+.footer {
+  color: var(--header-footer-font-color);
+  font-weight: bold;
+  background-color: var(--header-footer-color);;
+  padding: 20px;
+  box-shadow: var(--shadow-color) 0px -2px 3px;
+}
+
+
+/* ### TODO ### Media Queries */
+
+@media  (max-width: 850px) {
+  .main {
+    flex-direction:column;
+  }
+
+  .tagging {
+    width: calc(100% - 1rem);
+  }
+  .discovery {
+    width: calc(100% - 1rem);
+  }
+
+  .discovery__search > * {
+    width: calc(100% - 1rem);
+  }
+
+  .discovery__wrapper {
+    flex-direction:column;
+  }
+
+  .discovery__wrapper > * {
+    width: calc(100% - 1rem);
+  }
+}

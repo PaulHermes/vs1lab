@@ -55,6 +55,10 @@ class InMemoryGeoTagStore{
         }
     }
 
+    removeGeoTagById(id) {
+        this.#geotags = this.#geotags.filter((tag) => tag.id != id);
+    }
+
     getNearbyGeoTags(latitude, longitude, radius) {
         return this.#geotags.filter((tag) => {
             return this.#distanceOnGlobe(tag.latitude, tag.longitude, latitude, longitude) <= radius;
@@ -78,10 +82,7 @@ class InMemoryGeoTagStore{
     }
 
     getGeoTagById(id) {
-        this.#geotags.forEach(tag => {
-            if (tag.id == id) return tag;
-        });
-        return undefined;
+        return this.#geotags.find(tag => tag.id == id);
     }
 
     get geoTags() {

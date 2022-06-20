@@ -15,6 +15,39 @@ console.log("The geoTagging script is going to start...");
 
 const mapManager=new MapManager("f6Izk0LryJDBocqUVZc5AGZ8XGG1yy2c");
 
+//Pagaination
+const tagsPerPage=6;
+
+pagination = {
+    current: 0,
+    tagAmount: 10,
+    getParams: function () {
+        return "?from=" + this.current * 6 + "&to=" + (this.current + 1) * 6;
+    },
+    next: function() {
+        this.current++;
+        this.current = Math.min(this.current, this.pageCount() - 1);
+        loadTags();
+    },
+    previous: function() {
+        this.current--;
+        this.current = Math.max(this.current, 0);
+        loadTags();
+    },
+    update: function() {
+        
+        document.getElementById("page_number").innerText=(this.current + 1) + " / " + this.pageCount();
+        document.getElementById("page_previous").disabled = this.current <= 0;
+        document.getElementById("page_next").disabled = this.current + 1 == this.pageCount();
+    },
+    pageCount: function() {
+        return Math.ceil((this.tagAmount) / tagsPerPage);
+    }
+}
+
+
+
+
 /**
  * TODO: 'updateLocation'
  * A function to retrieve the current location and update the page.
@@ -50,7 +83,7 @@ function updateTaglist(taglist){
     console.log(taglist);
     taglist.forEach(element => { 
         if(element != undefined){
-        html += '<li>' + element.name + " ( " +  element.latitude + ","+ element.longitude + ") " + element.hashtag + '</li>'
+            html += '<li>' + element.name + " ( " +  element.latitude + ","+ element.longitude + ") " + element.hashtag + '</li>'
         }
      });
 
@@ -59,16 +92,7 @@ function updateTaglist(taglist){
 }
 
 function addTagToList(tag){
-    document.getElementById("discoveryResults").innerHTML += '<li>' + tag.name + " ( " +  tag.latitude + ","+ tag.longitude + ") " + tag.hashtag + '</li>';
-
-    fetch('/api/geotags',{
-        method: "GET",
-        headers: {"Content-Type": "application/json"}
-        
-    })
-        .then(res =>res.json())
-        .then(data => updateMap(data))
-        .catch(error => console.error("Fehler: ", error))
+    loadTags();
 }
 
 function updateMap(taglist){
@@ -107,27 +131,39 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("discoveryFilterForm").addEventListener("submit",async function(e){
         e.preventDefault();
 
-        var params = "?";
-        if(document.getElementById("search").value != null){
-            params += "searchterm=" + encodeURIComponent(document.getElementById("search").value);
-
-            if(document.getElementById("hiddenlat").value != null && document.getElementById("hiddenlong" != null)){
-                params +=  "&latitude=" + document.getElementById("hiddenlat").value + "&longitude=" + document.getElementById("hiddenlong").value;
-            }
-        }
-        else if(document.getElementById("hiddenlat").value != null && document.getElementById("hiddenlong" != null)){
-            params += "latitude=" + document.getElementById("hiddenlat").value  + "&longitude=" + document.getElementById("hiddenlong").value;
-        }
-
-        fetch('/api/geotags'+ params,{
-            method: "GET",
-            headers: {"Content-Type": "application/json"}
-            
-        })
-            .then(res =>res.json())
-            .then(data => updateTaglist(data))
-            .catch(error => console.error("Fehler: ", error))
+        loadTags();
     })
 
 });
 
+function loadTags() {
+    var params = pagination.getParams();
+    if(document.getElementById("search").value != null){
+        params += "&searchterm=" + encodeURIComponent(document.getElementById("search").value);
+
+        if(document.getElementById("hiddenlat").value != null && document.getElementById("hiddenlong" != null)){
+            params +=  "&latitude=" + document.getElementById("hiddenlat").value + "&longitude=" + document.getElementById("hiddenlong").value;
+        }
+    }
+    else if(document.getElementById("hiddenlat").value != null && document.getElementById("hiddenlong" != null)){
+        params += "latitude=" + document.getElementById("hiddenlat").value  + "&longitude=" + document.getElementById("hiddenlong").value;
+    }
+
+    fetch('/api/geotags'+ params,{
+        method: "GET",
+        headers: {"Content-Type": "application/json"}
+        
+    })
+        .then(res =>res.json())
+        .then(data => {
+            updateTaglist(data.tags);
+            pagination.tagAmount = data.tagAmount;
+            if (pagination.current < 0) pagination.current = 0;
+            if (pagination.current >= pagination.pageCount()) {
+                pagination.current = Math.min(pagination.current, Math.max(-1, pagination.pageCount() - 1));
+                loadTags();
+            }
+            pagination.update();
+        })
+        .catch(error => console.error("Fehler: ", error))
+}

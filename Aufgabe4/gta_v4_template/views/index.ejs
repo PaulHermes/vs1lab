@@ -28,7 +28,7 @@
             <!-- ############### VS1Lab 1a Form 1 Start -->
             <fieldset>
                 <legend> Enter new GeoTag</legend>
-                <form id="tag-form" action="/tagging" method="post">
+                <form id="tag-form" action="/" method="post">
                     <!-- Removed disabled for lat, long as the coords are not send otherwise.. Is this supposed to work some other way?-->
 
                     <!-- lattitude --> <!-- pattern="-?(\d){1,2}.(\d)+"-->
@@ -63,7 +63,7 @@
             <!-- ############### VS1Lab 1a Form 2 Start -->
             <fieldset>
                 <legend> Filter by Searchterm</legend>
-                <form class="discovery__search" id="discoveryFilterForm" action="/discovery" method="post">
+                <form class="discovery__search" id="discoveryFilterForm" action="/" method="post">
                     <!-- search -->
                     <input id="search" class="col-4" name="search" type="text" placeholder="search term">
                     <input id="hiddenlat" type="hidden" name="hiddenlat" value="<%= latitude %>">
@@ -77,11 +77,15 @@
                 <div class="discovery__taglist col-5">
                     <ul class="discovery__results" id="discoveryResults">
 
-                        <% if (taglist !== undefined) taglist.forEach(function(gtag) { %>
+                        <% if (taglist !== undefined) taglist.forEach(function(gtag, index) { %>
+                            <% if (index >= 6) { return;} %>
                             <li><%= gtag.name %> ( <%= gtag.latitude %>,<%= gtag.longitude %>) <%= gtag.hashtag %> </li>
                         <% }); %>
 
                     </ul>
+                    <button id="page_previous" onclick="pagination.previous()" disabled>Vorherige</button>
+                    <span id="page_number">1 / <%= Math.ceil(taglist.length / 6) %></span>
+                    <button id="page_next" onclick="pagination.next()">Nächste</button>
                 </div>
 
                 <div class="discovery__map col-7">

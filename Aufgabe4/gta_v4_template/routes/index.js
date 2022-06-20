@@ -76,6 +76,16 @@
        tags = tagStore.searchGeoTags(req.query.searchterm);
      }
    }
+   var length = tags.length;
+
+   if (req.query.from) {
+    tags = tags.filter((tag, index) => index >= req.query.from);
+   }
+   if (req.query.to) {
+    tags = tags.filter((tag, index) => index < req.query.to - (req.query.from ? req.query.from : 0));
+   }
+
+   tags = {tags: tags, tagAmount: length};
    console.log(tags);
    res.json(tags);
    
@@ -130,6 +140,7 @@
  router.put("/api/geotags/:id", (req, res) => {
    var tag = tagStore.getGeoTagById(req.params.id);
    Object.assign(tag, req.body);
+   tag.id = req.params.id;
    res.json(tag);
  });
  

@@ -1,0 +1,13 @@
+curl -d '{"name":"Haha", "latitude":0,"longitude":0,"hashtag":"#lel"}' -H 'Content-Type: application/json' localhost:3000/api/geotags
+
+curl "localhost:3000/api/geotags"
+
+curl "localhost:3000/api/geotags?searchterm=campus"
+
+curl "localhost:3000/api/geotags?searchterm=campus&latitude=49&longitude=8.38&radius=5000"
+
+curl "localhost:3000/api/geotags/2"
+
+curl -d '{"name":"Haha", "latitude":0,"longitude":0,"hashtag":"#lel"}' -H 'Content-Type: application/json' -X PUT localhost:3000/api/geotags/2
+
+curl "localhost:3000/api/geotags/2" -X DELETE
